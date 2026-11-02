@@ -94,7 +94,7 @@ def find_col(df, candidates):
         key = candidate.lower().replace("_", " ")
         if key in normalised:
             return normalised[key]
-                    for col in df.columns:
+    for col in df.columns:
         low = str(col).lower().replace("_", " ")
         if any(candidate.lower().replace("_", " ") in low for candidate in candidates):
             return col
@@ -167,7 +167,7 @@ def correlation_text(value, var_a, var_b):
         return f"The Pearson correlation is {value:.3f}, indicating no linear association between {var_a} and {var_b} in the selected data."
     return (f"The Pearson correlation is {value:.3f}, indicating a {strength} {direction} linear association "
             f"between {var_a} and {var_b}. This describes association, not causation.")
-        
+
 def section_heading(kicker, title, description=None):
     st.markdown(f'<div class="section-kicker">{kicker}</div>', unsafe_allow_html=True)
     st.subheader(title)
@@ -349,7 +349,7 @@ if page == "Overview":
         }),
         use_container_width=True, hide_index=True,
     )
-            st.markdown('<div class="insight-card"><b>How to read this dashboard</b><br>Bar charts compare values between states, maps show geographical patterns, and scatter plots examine relationships between two numerical variables. Correlation does not prove causation.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="insight-card"><b>How to read this dashboard</b><br>Bar charts compare values between states, maps show geographical patterns, and scatter plots examine relationships between two numerical variables. Correlation does not prove causation.</div>', unsafe_allow_html=True)
 
 elif page.startswith("Objective 1"):
     section_heading("OBJECTIVE 01", "Births & household income",
@@ -400,7 +400,7 @@ elif page.startswith("Objective 2"):
     c2.metric(f"Average {income_measure.lower()}", f"RM {merged[income_measure].mean():,.0f}")
     c3.metric("Pearson correlation (r)", f"{corr:.3f}" if pd.notna(corr) else "N/A")
 
-   left, right = st.columns([1, 1])
+    left, right = st.columns([1, 1])
     with left:
         section_heading("GEOSPATIAL", "School completion by state")
         show_map(school_view, "Completion Rate", "School completion rate by state", "Completion rate (%)")
@@ -465,7 +465,7 @@ else:
         style_fig(fig, max(390, 30 * len(birth_view) + 100))
         st.plotly_chart(fig, use_container_width=True)
     with right:
-                  section_heading("STATE COMPARISON", "School completion by state")
+        section_heading("STATE COMPARISON", "School completion by state")
         fig = px.bar(
             school_view.sort_values("Completion Rate"), x="Completion Rate", y="State",
             orientation="h", color_discrete_sequence=[TEAL],
